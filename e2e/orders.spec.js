@@ -439,7 +439,10 @@ describe('PUT /orders/:orderid', () => {
         expect(resp.status).toBe(200);
         return resp.json();
       })
-      .then(json => expect(json.status).toBe('delivered'))
+      .then((json) => {
+        expect(json.status).toBe('delivered');
+        expect(typeof json.dateProcessed).toBe('string');
+      })
   ));
 });
 
