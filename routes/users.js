@@ -5,6 +5,10 @@ const {
   requireAdmin,
 } = require('../middleware/auth');
 
+const {
+  getUsers,
+} = require('../controller/users');
+
 
 const initAdminUser = (app, next) => {
   const { adminEmail, adminPassword } = app.get('config');
@@ -72,8 +76,7 @@ module.exports = (app, next) => {
    * @code {401} si no hay cabecera de autenticación
    * @code {403} si no es ni admin
    */
-  app.get('/users', requireAdmin, (req, resp) => {
-  });
+  app.get('/users', requireAdmin, getUsers);
 
   /**
    * @name GET /users/:uid
